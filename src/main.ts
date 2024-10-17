@@ -186,28 +186,28 @@ function game() {
 
   draw(bullets_layer, (ctx) => {
     bullets: {
-      invader_bullets.forEach((bullet) => {
+      for (const bullet of invader_bullets) {
         ctx.beginPath()
         ctx.fillStyle = 'red'
         ctx.arc(bullet.x, bullet.y, size / 5, 0, Math.PI)
         ctx.fill()
         ctx.closePath()
-      })
+      }
 
-      defender_bullets.forEach((bullet) => {
+      for (const bullet of defender_bullets) {
         ctx.beginPath()
         ctx.fillStyle = 'blue'
         ctx.arc(bullet.x, bullet.y, size / 5, 0, Math.PI, true)
         ctx.fill()
         ctx.closePath()
-      })
+      }
     }
   })
 
   draw(mega_layer, (ctx) => {
     barriers: {
       ctx.fillStyle = 'brown'
-      barriers.forEach(({ x, y, w, h, hits_left }) => {
+      for (const { x, y, w, h, hits_left } of barriers) {
         if (hits_left > 0) {
           ctx.font = `bold  ${h * 1.25}px pixelon`
           ctx.fillText(
@@ -217,7 +217,7 @@ function game() {
           )
           ctx.rect(x, y, w, h)
         }
-      })
+      }
       ctx.fill()
     }
 
@@ -229,18 +229,18 @@ function game() {
     }
 
     explosions: {
-      explosions.forEach((e) => {
-        draw_image(ctx, explosion_image).at(e)
-      })
+      for (const explosion of explosions) {
+        draw_image(ctx, explosion_image).at(explosion)
+      }
     }
 
     invaders: {
-      invaders.forEach((invader) => {
+      for (const invader of invaders) {
         draw_image(ctx, invader_image).at({
           y: invader.y,
           x: invader.x,
         })
-      })
+      }
     }
 
     stats: {
