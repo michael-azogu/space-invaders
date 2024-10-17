@@ -71,7 +71,7 @@ function shoot(e: KeyboardEvent) {
   }
 }
 
-document.addEventListener('keydown', throttle(shoot, 500))
+document.addEventListener('keydown', throttle(shoot, 250))
 
 let invaders: Array<position & box> = []
 const invader_gap = size * 0.4
@@ -139,7 +139,7 @@ function game() {
           const explosion = { y: invader.y, x: invader.x }
           setTimeout(
             () => (explosions = explosions.filter((e) => e != explosion)),
-            1500
+            2500
           )
           explosions.push(explosion)
         }
@@ -210,7 +210,11 @@ function game() {
       barriers.forEach(({ x, y, w, h, hits_left }) => {
         if (hits_left > 0) {
           ctx.font = `bold  ${h * 1.25}px pixelon`
-          ctx.fillText(String(hits_left).padStart(2, '0'), x + w / 2 - h, y - h / 2)
+          ctx.fillText(
+            String(hits_left).padStart(2, '0'),
+            x + w / 2 - h,
+            y - h / 2
+          )
           ctx.rect(x, y, w, h)
         }
       })
